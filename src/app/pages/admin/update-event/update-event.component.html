@@ -1,0 +1,87 @@
+<h3 class="text-center">  {{event.forename }} {{event.surname }}</h3>
+
+<app-loading *ngIf="loading"></app-loading>
+
+<ng-template [ngIf]="utils.isLoaded(loading)">
+  <div *ngIf="event" class="card">
+    <div class="card-header">
+      <ul class="nav nav-tabs card-header-tabs">
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            [routerLink]="[]"
+            [queryParams]="{ tab: 'read' }"
+            [ngClass]="{ 'active': utils.tabIs(tab, 'read') }">Details</a>
+        </li>         
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            [routerLink]="[]"
+            [queryParams]="{ tab: 'edit' }"
+            [ngClass]="{ 'active': utils.tabIs(tab, 'edit') }">Update</a>
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            [routerLink]="[]"
+            [queryParams]="{ tab: 'delete' }"
+            [ngClass]="{ 'active': utils.tabIs(tab, 'delete') }">Delete</a>
+        </li>
+       <!-- <li class="nav-item">
+          <a
+            class="nav-link"
+            [routerLink]="[]"
+            [queryParams]="{ tab: 'sign' }"
+            [ngClass]="{ 'active': utils.tabIs(tab, 'sign') }">Actions</a>
+        </li>        
+       -->
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            [routerLink]="[]"
+            [queryParams]="{ tab: 'audit' }"
+            [ngClass]="{ 'active': utils.tabIs(tab, 'audit') }">Actions</a>
+        </li>
+
+       
+      </ul>
+    </div>
+
+    <div class="card-body">
+      
+      <!-- Edit event form -->
+      <app-event-form
+        *ngIf="utils.tabIs(tab, 'edit')"
+        [event]="event"></app-event-form>
+
+      <!-- Delete event -->
+      <app-delete-event
+        *ngIf="utils.tabIs(tab, 'delete')"
+        [event]="event"></app-delete-event>
+      
+      <!-- Read event -->
+      <app-read-event
+        *ngIf="utils.tabIs(tab, 'read')"
+        [event]="event"></app-read-event>
+      
+      <!-- Aduit History event -->
+      <app-audit-event
+        *ngIf="utils.tabIs(tab, 'audit')"
+         [eventId]="event._id"
+        [eventPast]="eventPast"></app-audit-event>
+
+
+
+      <!-- Countersign  event -->
+      <app-verify-event
+        *ngIf="utils.tabIs(tab, 'sign')"
+        [event]="event"></app-verify-event>        
+    </div>    
+
+  </div>
+
+  <!-- Error loading event -->
+  <p *ngIf="error" class="alert alert-danger">
+    <strong>Error:</strong> Event data could not be retrieved. View <a routerLink="/admin" class="alert-link">Admin Events</a>.
+  </p>
+</ng-template>

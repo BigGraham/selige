@@ -1,0 +1,78 @@
+<ng-template [ngIf]="utils.isLoaded(loading)">
+  <!-- Event is over -->
+  
+
+
+  <!-- All RSVPs -->
+
+ <!-- All Audit History -->
+ 
+   <section class="allRsvps">
+    <div class="card-body">
+      <h4 _ngcontent-c6="" class="large">Application Comments and Audit History</h4>
+      <p *ngIf="!rsvps.length" class="lead card-text">There is currently no audit history for this application.</p>
+    </div>
+
+   <!-- comments -->
+
+
+
+    <ul *ngIf="fs.filter(rsvps,'commentType','Comment').length" class="list-group list-group-flush">
+      <li class="list-group-item list-group-item-success justify-content-between">
+        <strong>Comments</strong>
+        
+      </li>
+
+
+      <li
+        *ngFor="let rsvp of fs.filter(rsvps,'commentType','Comment')"
+        class="list-group-item small">
+        <strong>
+         {{ rsvp.created_date | date :  "dd/MM/yyyy h:mm a" }}
+
+         </strong> by <strong>{{ rsvp.userId }} </strong>
+        <p *ngIf="auth.isAdmin && rsvp.comments" class="d-flex w-100">
+          <em [innerHTML]="rsvp.comments"></em>
+        </p>
+      </li>
+
+    </ul>
+
+    <!-- audit -->
+
+
+    <ul *ngIf="rsvps.length" class="list-group list-group-flush">
+      <li class="list-group-item list-group-item-success justify-content-between">
+        <strong>Audit History</strong>
+        
+      </li>
+
+
+      <li
+        *ngFor="let rsvp of fs.filter(rsvps,'commentType','Audit') "
+        class="list-group-item small">
+        <strong>
+            {{ rsvp.created_date | date :  "dd/MM/yyyy 'at' h:mm a" }}
+
+         </strong> by <strong>{{ rsvp.userId }} </strong>
+        <p *ngIf="auth.isAdmin && rsvp.comments" class="d-flex w-100">
+          <em [innerHTML]="rsvp.comments"></em>
+        </p>
+      </li>
+
+    </ul>
+
+     
+
+
+  </section>
+
+  <!-- Error loading RSVPs -->
+  <div *ngIf="error" class="card-body">
+    <p class="alert alert-danger">
+      <strong>Oops!</strong> There was an error retrieving RSVPs for this event.
+    </p>
+  </div>
+</ng-template>
+
+

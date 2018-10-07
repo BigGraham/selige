@@ -1,0 +1,44 @@
+<h1 class="text-center">{{ pageTitle }}</h1>
+
+<app-loading *ngIf="loading"></app-loading>
+
+<ng-template [ngIf]="utils.isLoaded(loading)">
+  <div *ngIf="event" class="card">
+    <div class="card-header">
+      <ul class="nav nav-tabs card-header-tabs">
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            [routerLink]="[]"
+            [queryParams]="{ tab: 'view' }"
+            [ngClass]="{ 'active': utils.tabIs(tab, 'view') }">View</a>
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            [routerLink]="[]"
+            [queryParams]="{ tab: 'history' }"
+            [ngClass]="{ 'active': utils.tabIs(tab, 'history') }">History</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="card-body">
+      <!-- Edit event form -->
+      <app-event-form
+        *ngIf="utils.tabIs(tab, 'view')"
+        [event]="event"></app-event-form>
+
+      <!-- Delete event -->
+      <app-delete-event
+        *ngIf="utils.tabIs(tab, 'history')"
+        [event]="event"></app-delete-event>
+    </div>
+
+  </div>
+
+  <!-- Error loading event -->
+  <p *ngIf="error" class="alert alert-danger">
+    <strong>Error:</strong> Event data could not be retrieved. View <a routerLink="/admin" class="alert-link">Admin Events</a>.
+  </p>
+</ng-template>

@@ -1,0 +1,49 @@
+
+<ng-template [ngIf]="utils.isLoaded(loading)">
+  <!-- Event is over -->
+  
+
+
+  <!-- All RSVPs -->
+
+ <!-- All RSVPs -->
+  <div class="card-body text-right">
+    <button (click)="toggleShowRsvps()" class="btn btn-link btn-sm">{{ showRsvpsText }}</button>
+  </div>
+
+
+  <section class="allRsvps" >
+    <div class="card-body">
+      <h3 class="card-title text-center">Audit History</h3>
+      <p *ngIf="!rsvps.length" class="lead card-text">There is currently no audit history for this application.</p>
+    </div>
+
+    <ul *ngIf="rsvps.length" class="list-group list-group-flush">
+      <li class="list-group-item list-group-item-success justify-content-between">
+        <strong>Audit Events</strong>
+        
+      </li>
+
+
+
+      <li
+        *ngFor="let rsvp of fs.filter(rsvps,'commentType',false)"
+        class="list-group-item small">
+        {{ rsvp.name }} 
+        <p *ngIf="auth.isAdmin && rsvp.comments" class="d-flex w-100">
+          <em [innerHTML]="rsvp.comments"></em>
+        </p>
+      </li>
+
+    </ul>
+  </section>
+
+  <!-- Error loading RSVPs -->
+  <div *ngIf="error" class="card-body">
+    <p class="alert alert-danger">
+      <strong>Oops!</strong> There was an error retrieving RSVPs for this event.
+    </p>
+  </div>
+</ng-template>
+
+

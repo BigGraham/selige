@@ -1,0 +1,850 @@
+
+<form [formGroup]="eventForm" (ngSubmit)="onSubmit()">
+  <!-- Title -->
+  <h4 class="large">Personal Details</h4>
+    <p class="medium">Please provide the candidates full name and any previous names for example, marriage, adoption (where known), or changes of name by other means. </p>
+
+  <div class="form-group">
+    <label for="gender"><strong>Gender</strong></label>
+    <select 
+      id="gender"
+      type="select"
+      formControlName="gender" 
+      class="form-control"
+      title="Choose from Male or Female from the drop down menu">
+        <option 
+            [value]="gender" *ngFor="let gender of genders">             {{gender}}
+        </option>
+    </select>
+     <div
+          *ngIf="formErrors.gender"
+          class="small text-danger formErrors"
+          [innerHTML]="formErrors.gender">
+        </div>
+  </div>
+
+  <div class="form-group">
+    <label for="title" ><strong>Title</strong></label>
+    <select 
+      id="title"
+      type="select"
+      formControlName="title" 
+      class="form-control"
+      title="Choose from the drop down menu of :
+                Mr
+                Mrs
+                Miss
+                Ms
+                Other
+                If other is selected please complete the other title">
+        <option 
+            [value]="title" *ngFor="let title of titles">             {{title}}
+        </option>
+    </select>
+    <div
+      *ngIf="formErrors.title"
+      class="small text-danger formErrors"
+      [innerHTML]="formErrors.title">
+    </div>
+  </div>
+
+    <!-- Other Title -->
+  <div class="form-group">
+    <label for="otherTitle"><strong>Other Title</strong></label>
+    <input
+      id="otherTitle"
+      type="text"
+      class="form-control"
+      formControlName="otherTitle"
+      [maxlength]="ef.otherTitleMax">
+    <div
+      *ngIf="formErrors.otherTitle"
+      class="small text-danger formErrors"
+      [innerHTML]="formErrors.otherTitle">
+    </div>
+  </div>
+  
+    <!-- forename -->
+  <div class="form-group">
+    <label for="forename"><strong>Forenames</strong></label>
+    <input
+      id="forename"
+      type="text"
+      class="form-control"
+      formControlName="forename"
+      [maxlength]="ef.forenameMax"
+      title="Enter any forenames and middlenames. Valid characters for this field are: aA to zZ, 0 to 9, space, apostrophe, full stop and hyphen.">
+    <div
+      *ngIf="formErrors.forename"
+      class="small text-danger formErrors"
+      [innerHTML]="formErrors.forename">
+    </div>
+  </div>  
+
+    <!-- forename -->
+  <div class="form-group">
+    <label for="surname"><strong>Surname</strong></label>
+    <input
+      id="surname"
+      type="text"
+      class="form-control"
+      formControlName="surname"
+      [maxlength]="ef.surnameMax"
+      title="Enter your current surname. Valid characters for this field are: aA to zZ, 0 to 9, space, apostrophe, full stop and hyphen.">
+    <div
+      *ngIf="formErrors.surname"
+      class="small text-danger formErrors"
+      [innerHTML]="formErrors.surname">
+    </div>
+  </div>  
+
+  <!-- View Public -->
+  <div class="form-group">
+    <label class="label-inline-group"><strong>Have you been known by another name?</strong></label>
+    <div class="form-check form-check-inline">
+      <label class="form-check-label">
+        <input
+          id="otherNames-yes"
+          type="radio"
+          class="form-check-input"
+          [value]="true"
+          formControlName="otherNames"> Yes
+      </label>
+    </div>
+    <div class="form-check form-check-inline">
+      <label class="form-check-label">
+        <input
+          id="otherNames-no"
+          type="radio"
+          class="form-check-input"
+          [value]="false"
+          formControlName="otherNames"> No
+      </label>
+    </div>
+    <div
+      *ngIf="formErrors.otherNames"
+      class="small text-danger formErrors"
+      [innerHTML]="formErrors.otherNames">
+    </div>
+  </div>
+
+    <!-- other forename -->
+  <div class="form-group">
+    <label for="otherForename"><strong>Other Forenames</strong></label>
+    <input
+      id="otherForename"
+      type="text"
+      class="form-control"
+      formControlName="otherForename"
+      [maxlength]="ef.forenameMax"
+      title="Enter any previous forenames and middlenames. Valid characters for this field are: aA to zZ, 0 to 9, space, apostrophe, full stop and hyphen.">
+    <div
+      *ngIf="formErrors.otherForename"
+      class="small text-danger formErrors"
+      [innerHTML]="formErrors.otherForename">
+    </div>
+  </div>  
+
+    <!-- surname -->
+  <div class="form-group">
+    <label for="otherSurname"><strong>Other Surname</strong></label>
+    <input
+      id="otherSurname"
+      type="text"
+      class="form-control"
+      formControlName="otherSurname"
+      [maxlength]="ef.surnameMax"
+      title="Enter your previous surname. Valid characters for this field are: aA to zZ, 0 to 9, space, apostrophe, full stop and hyphen.">
+    <div
+      *ngIf="formErrors.otherSurname"
+      class="small text-danger formErrors"
+      [innerHTML]="formErrors.otherSurname">
+    </div>
+  </div>  
+
+    <!-- mothers maiden -->
+  <div class="form-group">
+    <label for="mothersMaiden"><strong>Mothers Maiden name</strong></label>
+    <input
+      id="mothersMaiden"
+      type="text"
+      class="form-control"
+      formControlName="mothersMaiden"
+      [maxlength]="ef.surnameMax"
+      title="Enter your previous surname. Valid characters for this field are: aA to zZ, 0 to 9, space, apostrophe, full stop and hyphen.">
+    <div
+      *ngIf="formErrors.mothersMaiden"
+      class="small text-danger formErrors"
+      [innerHTML]="formErrors.mothersMaiden">
+    </div>
+  </div>
+
+<h4 class="large">Birth Details</h4>
+          <p class="medium">Please provide the birth details for the candidate.</p>
+ 
+<div class="form-group">
+        <label for="startDate">Birth Date</label>
+        <input
+          id="birthDate"
+          type="text"
+          class="form-control"
+          formControlName="birthDate"
+          [placeholder]="ef.dateFormat"
+          [maxlength]="ef.dateMax">
+        <div
+          *ngIf="formErrors.birthDate"
+          class="small text-danger formErrors"
+          [innerHTML]="formErrors.birthDate">
+        </div>
+      </div>
+
+    <!-- Country of Birth -->
+  <div class="form-group">
+    <label for="countryOfBirth"><strong>Country of Birth</strong></label>
+    <select
+      id="countryOfBirth"
+      type="select"
+      class="form-control"
+      formControlName="countryOfBirth"
+      [maxlength]="ef.surnameMax"
+      title="Enter your country of birth. ">
+      <option 
+            [value]="countryOfBirth" *ngFor="let countryOfBirth of countries">             {{countryOfBirth}}
+        </option>
+      </select>
+    <div
+      *ngIf="formErrors.countryOfBirth"
+      class="small text-danger formErrors"
+      [innerHTML]="formErrors.countryOfBirth">
+    </div>
+  </div>
+
+
+
+
+
+
+    <!-- Town of Birth -->
+  <div class="form-group">
+    <label for="townOfBirth"><strong>Town of Birth</strong></label>
+    <input
+      id="townOfBirth"
+      type="text"
+      class="form-control"
+      formControlName="townOfBirth"
+      [maxlength]="ef.surnameMax"
+      title="Enter your town of birth. Valid characters for this field are: aA to zZ, 0 to 9, space, apostrophe, full stop and hyphen.">
+    <div
+      *ngIf="formErrors.townOfBirth"
+      class="small text-danger formErrors"
+      [innerHTML]="formErrors.townOfBirth">
+    </div>
+  </div>
+
+
+    <!-- nationality  -->
+  <div class="form-group">
+    <label for="nationality"><strong>Nationality</strong></label>
+    <select
+      id="nationality"
+      type="select"
+      class="form-control"
+      formControlName="nationality"
+      [maxlength]="ef.surnameMax"
+      title="Enter your nationality. ">
+      <option 
+            [value]="nationality" *ngFor="let nationality of nationalites">             {{nationality}}
+        </option>
+      </select>
+    <div
+      *ngIf="formErrors.nationality"
+      class="small text-danger formErrors"
+      [innerHTML]="formErrors.nationality">
+    </div>
+  </div>
+
+
+<h4 class="large">Additional information for identity confirmation</h4>
+          <p class="medium">Please provide additional information to make it easier to confirm your identity</p>
+ 
+
+
+  <!-- Has UK NINO -->
+  <div class="form-group">
+    <label class="label-inline-group"><strong>Do you have a UK National Insurance Number?</strong></label>
+    <div class="form-check form-check-inline">
+      <label class="form-check-label">
+        <input
+          id="hasUKNINO-yes"
+          type="radio"
+          class="form-check-input"
+          [value]="true"
+          formControlName="hasUKNINO"> Yes
+      </label>
+    </div>
+    <div class="form-check form-check-inline">
+      <label class="form-check-label">
+        <input
+          id="hasUKNINO-no"
+          type="radio"
+          class="form-check-input"
+          [value]="false"
+          formControlName="hasUKNINO"> No
+      </label>
+    </div>
+    <div
+      *ngIf="formErrors.hasUKNINO"
+      class="small text-danger formErrors"
+      [innerHTML]="formErrors.hasUKNINO">
+    </div>
+  </div>
+
+  <!-- Nino -->
+  <div class="form-group">
+    <label for="NINO"><strong>National Insurance Number</strong></label>
+    <input
+      id="NINO"
+      type="text"
+      class="form-control"
+      formControlName="NINO"
+      [maxlength]="ef.surnameMax"
+      title="Enter your town of NINO. Valid characters for this field are: aA to zZ, 0 to 9, space, apostrophe, full stop and hyphen.">
+    <div
+      *ngIf="formErrors.NINO"
+      class="small text-danger formErrors"
+      [innerHTML]="formErrors.NINO">
+    </div>
+  </div>
+
+
+
+
+
+  <!-- Has Passport -->
+  <div class="form-group">
+    <label class="label-inline-group"><strong>Do you have a passport?</strong></label>
+    <div class="form-check form-check-inline">
+      <label class="form-check-label">
+        <input
+          id="hasPassport-yes"
+          type="radio"
+          class="form-check-input"
+          [value]="true"
+          formControlName="hasPassport"> Yes
+      </label>
+    </div>
+    <div class="form-check form-check-inline">
+      <label class="form-check-label">
+        <input
+          id="hasPassport-no"
+          type="radio"
+          class="form-check-input"
+          [value]="false"
+          formControlName="hasPassport"> No
+      </label>
+    </div>
+    <div
+      *ngIf="formErrors.hasPassport"
+      class="small text-danger formErrors"
+      [innerHTML]="formErrors.hasPassport">
+    </div>
+  </div>
+
+
+  <!-- Passport -->
+  <div class="form-group">
+    <label for="passportNo"><strong>Passport Number</strong></label>
+    <input
+      id="passportNo"
+      type="text"
+      class="form-control"
+      formControlName="passportNo"
+      [maxlength]="ef.surnameMax"
+      title="Enter your passport number. Valid characters for this field are: aA to zZ, 0 to 9, space, apostrophe, full stop and hyphen.">
+    <div
+      *ngIf="formErrors.passportNo"
+      class="small text-danger formErrors"
+      [innerHTML]="formErrors.passportNo">
+    </div>
+  </div>
+
+
+    <!-- Passport Country of Issue -->
+  <div class="form-group">
+    <label for="passportCountry"><strong>Passport Country of Issue</strong></label>
+    <select
+      id="passportCountry"
+      type="select"
+      class="form-control"
+      formControlName="passportCountry"
+      [maxlength]="ef.surnameMax"
+      title="Select your passport country of issue. ">
+      <option 
+            [value]="passportCountry" *ngFor="let passportCountry of countries">             {{passportCountry}}
+        </option>
+      </select>
+    <div
+      *ngIf="formErrors.passportCountry"
+      class="small text-danger formErrors"
+      [innerHTML]="formErrors.passportCountry">
+    </div>
+  </div>
+
+
+
+
+  <!-- Has Driving Licence -->
+  <div class="form-group">
+    <label class="label-inline-group"><strong>Do you have a driving licence?</strong></label>
+    <div class="form-check form-check-inline">
+      <label class="form-check-label">
+        <input
+          id="hasDrivingLicence-yes"
+          type="radio"
+          class="form-check-input"
+          [value]="true"
+          formControlName="hasDrivingLicence"> Yes
+      </label>
+    </div>
+    <div class="form-check form-check-inline">
+      <label class="form-check-label">
+        <input
+          id="hasDrivingLicence-no"
+          type="radio"
+          class="form-check-input"
+          [value]="false"
+          formControlName="hasDrivingLicence"> No
+      </label>
+    </div>
+    <div
+      *ngIf="formErrors.hasDrivingLicence"
+      class="small text-danger formErrors"
+      [innerHTML]="formErrors.hasDrivingLicence">
+    </div>
+  </div>
+
+
+  <!-- Driving License No -->
+  <div class="form-group">
+    <label for="drivingLicence"><strong>Driving Licence Number</strong></label>
+    <input
+      id="drivingLicence"
+      type="text"
+      class="form-control"
+      formControlName="drivingLicence"
+      [maxlength]="ef.surnameMax"
+      title="Enter your driving licence number. Valid characters for this field are: aA to zZ, 0 to 9, space, apostrophe, full stop and hyphen.">
+    <div
+      *ngIf="formErrors.drivingLicence"
+      class="small text-danger formErrors"
+      [innerHTML]="formErrors.drivingLicence">
+    </div>
+  </div>
+
+
+
+  <!-- Driving Licence Country of Issue -->
+  <div class="form-group">
+    <label for="licenceCountry"><strong>Driving Licence Country of Issue</strong></label>
+    <select
+      id="licenceCountry"
+      type="select"
+      class="form-control"
+      formControlName="licenceCountry"
+      [maxlength]="ef.surnameMax"
+      title="Select your driving licence country of issue. ">
+      <option 
+            [value]="licenceCountry" *ngFor="let licenceCountry of countries">             {{licenceCountry}}
+        </option>
+      </select>
+    <div
+      *ngIf="formErrors.licenceCountry"
+      class="small text-danger formErrors"
+      [innerHTML]="formErrors.licenceCountry">
+    </div>
+  </div>
+
+
+  <!-- Has National ID card -->
+  <div class="form-group">
+    <label class="label-inline-group"><strong>Do you have a national identity card?</strong></label>
+    <div class="form-check form-check-inline">
+      <label class="form-check-label">
+        <input
+          id="IsNICAvailable-yes"
+          type="radio"
+          class="form-check-input"
+          [value]="true"
+          formControlName="IsNICAvailable"> Yes
+      </label>
+    </div>
+    <div class="form-check form-check-inline">
+      <label class="form-check-label">
+        <input
+          id="IsNICAvailable-no"
+          type="radio"
+          class="form-check-input"
+          [value]="false"
+          formControlName="IsNICAvailable"> No
+      </label>
+    </div>
+    <div
+      *ngIf="formErrors.IsNICAvailable"
+      class="small text-danger formErrors"
+      [innerHTML]="formErrors.IsNICAvailable">
+    </div>
+  </div>
+
+
+  <!-- National ID Number -->
+  <div class="form-group">
+    <label for="NICNumber"><strong>National ID Card Number</strong></label>
+    <input
+      id="NICNumber"
+      type="text"
+      class="form-control"
+      formControlName="NICNumber"
+      [maxlength]="ef.surnameMax"
+      title="Enter your National ID Card number. Valid characters for this field are: aA to zZ, 0 to 9, space, apostrophe, full stop and hyphen.">
+    <div
+      *ngIf="formErrors.NICNumber"
+      class="small text-danger formErrors"
+      [innerHTML]="formErrors.NICNumber">
+    </div>
+  </div>
+
+
+
+  <!-- National ID Card Country of Issue -->
+  <div class="form-group">
+    <label for="NICCountryOfIssue"><strong>National ID Card Country of Issue</strong></label>
+    <select
+      id="NICCountryOfIssue"
+      type="select"
+      class="form-control"
+      formControlName="NICCountryOfIssue"
+      [maxlength]="ef.surnameMax"
+      title="Select your national id country of issue. ">
+      <option 
+            [value]="NICCountryOfIssue" *ngFor="let NICCountryOfIssue of countries">             {{NICCountryOfIssue}}
+        </option>
+      </select>
+    <div
+      *ngIf="formErrors.NICCountryOfIssue"
+      class="small text-danger formErrors"
+      [innerHTML]="formErrors.NICCountryOfIssue">
+    </div>
+  </div>
+
+  <!-- National ID Number -->
+  <div class="form-group">
+    <label for="ElectricitySupplierNumber"><strong>Electricity Supplier Number</strong></label>
+    <input
+      id="ElectricitySupplierNumber"
+      type="text"
+      class="form-control"
+      formControlName="ElectricitySupplierNumber"
+      [maxlength]="ef.leckyMax"
+      title="Enter your Electricity Supplier Number number. Valid characters for this field are: aA to zZ, 0 to 9, space, apostrophe, full stop and hyphen.">
+    <div
+      *ngIf="formErrors.ElectricitySupplierNumber"
+      class="small text-danger formErrors"
+      [innerHTML]="formErrors.ElectricitySupplierNumber">
+    </div>
+  </div>
+
+  <!-- National Entitlement Card Number -->
+  <div class="form-group">
+    <label for="NatEntCardNo"><strong>National Entitlement Card Number</strong></label>
+    <input
+      id="NatEntCardNo"
+      type="text"
+      class="form-control"
+      formControlName="NatEntCardNo"
+      [maxlength]="ef.natEntMax"
+      title="Enter your National Entitlement Card Number number. Valid characters for this field are: aA to zZ, 0 to 9, space, apostrophe, full stop and hyphen.">
+    <div
+      *ngIf="formErrors.NatEntCardNo"
+      class="small text-danger formErrors"
+      [innerHTML]="formErrors.NatEntCardNo">
+    </div>
+  </div>
+
+ <!-- PVG Scheme ID -->
+  <div class="form-group">
+    <label for="PVGSchemeID"><strong>PVG Scheme ID</strong></label>
+    <input
+      id="PVGSchemeID"
+      type="text"
+      class="form-control"
+      formControlName="PVGSchemeID"
+      [maxlength]="ef.natEntMax"
+      title="Enter your PVG Scheme ID. Valid characters for this field are: aA to zZ, 0 to 9, space, apostrophe, full stop and hyphen.">
+    <div
+      *ngIf="formErrors.PVGSchemeID"
+      class="small text-danger formErrors"
+      [innerHTML]="formErrors.PVGSchemeID">
+    </div>
+  </div>
+
+
+ <h4 class="large">Contact Details</h4>
+          <p class="medium">Please enter at least one contact telephone number.</p>
+
+
+ <!-- Email Address -->
+  <div class="form-group">
+    <label for="EmailAddress"><strong>Email Address</strong></label>
+    <input
+      id="EmailAddress"
+      type="text"
+      class="form-control"
+      formControlName="EmailAddress"
+      [maxlength]="ef.forenameMax"
+      title="Please provide a valid email address.">
+    <div
+      *ngIf="formErrors.EmailAddress"
+      class="small text-danger formErrors"
+      [innerHTML]="formErrors.EmailAddress">
+    </div>
+  </div>
+
+ <!-- Evening Telephone -->
+  <div class="form-group">
+    <label for="EveningPhoneNumber"><strong>Evening Telephone No</strong></label>
+    <input
+      id="EveningPhoneNumber"
+      type="text"
+      class="form-control"
+      formControlName="EveningPhoneNumber"
+      [maxlength]="ef.phoneMax"
+      title="Please provide a telephone number.">
+    <div
+      *ngIf="formErrors.EveningPhoneNumber"
+      class="small text-danger formErrors"
+      [innerHTML]="formErrors.EveningPhoneNumber">
+    </div>
+  </div>
+
+ <!-- Daytime Telephone -->
+  <div class="form-group">
+    <label for="DaytimePhoneNumber"><strong>Daytime Telephone No</strong></label>
+    <input
+      id="DaytimePhoneNumber"
+      type="text"
+      class="form-control"
+      formControlName="DaytimePhoneNumber"
+      [maxlength]="ef.phoneMax"
+      title="Please provide a telephone number.">
+    <div
+      *ngIf="formErrors.DaytimePhoneNumber"
+      class="small text-danger formErrors"
+      [innerHTML]="formErrors.DaytimePhoneNumber">
+    </div>
+  </div>
+
+<h4 class="large">Current Address Details</h4>
+          <p class="medium">Please provide at least five year's of address history, including home and university addresses.</p>
+
+<div class="form-group">
+        <label for="currResidentFrom"><strong>Resident From</strong></label>
+        <input
+          id="currResidentFrom"
+          type="text"
+          class="form-control"
+          formControlName="currResidentFrom"
+          [placeholder]="ef.dateFormat"
+          [maxlength]="ef.dateMax">
+        <div
+          *ngIf="formErrors.currResidentFrom"
+          class="small text-danger formErrors"
+          [innerHTML]="formErrors.currResidentFrom">
+        </div>
+      </div>
+
+ <!-- Current Address Line 1 -->
+  <div class="form-group">
+    <label for="currAddrLine1"><strong>Address Line 1</strong></label>
+    <input
+      id="currAddrLine1"
+      type="text"
+      class="form-control"
+      formControlName="currAddrLine1"
+      [maxlength]="ef.addressMax"
+      title="Please provide current address line 1.">
+    <div
+      *ngIf="formErrors.currAddrLine1"
+      class="small text-danger formErrors"
+      [innerHTML]="formErrors.currAddrLine1">
+    </div>
+  </div>
+
+ <!-- Current Address Line 2 -->
+  <div class="form-group">
+    <label for="currAddrLine2"><strong>Address Line 2</strong></label>
+    <input
+      id="currAddrLine2"
+      type="text"
+      class="form-control"
+      formControlName="currAddrLine2"
+      [maxlength]="ef.addressMax"
+      title="Please provide current address line 2.">
+    <div
+      *ngIf="formErrors.currAddrLine2"
+      class="small text-danger formErrors"
+      [innerHTML]="formErrors.currAddrLin2">
+    </div>
+  </div>  
+
+ <!-- Current Address Town -->
+  <div class="form-group">
+    <label for="currAddrTown"><strong>Town</strong></label>
+    <input
+      id="currAddrTown"
+      type="text"
+      class="form-control"
+      formControlName="currAddrTown"
+      [maxlength]="ef.addressMax"
+      title="Please provide current address town.">
+    <div
+      *ngIf="formErrors.currAddrTown"
+      class="small text-danger formErrors"
+      [innerHTML]="formErrors.currAddrTown">
+    </div>
+  </div>  
+
+ <!-- Current Address County -->
+  <div class="form-group">
+    <label for="currAddrCounty"><strong>County</strong></label>
+    <input
+      id="currAddrCounty"
+      type="text"
+      class="form-control"
+      formControlName="currAddrCounty"
+      [maxlength]="ef.addressMax"
+      title="Please provide current address county.">
+    <div
+      *ngIf="formErrors.currAddrCounty"
+      class="small text-danger formErrors"
+      [innerHTML]="formErrors.currAddrCounty">
+    </div>
+  </div>    
+
+ <!-- Current Address Postcode -->
+  <div class="form-group">
+    <label for="currAddrPostCode"><strong>Postcode</strong></label>
+    <input
+      id="currAddrPostCode"
+      type="text"
+      class="form-control"
+      formControlName="currAddrPostCode"
+      [maxlength]="ef.postcodeMax"
+      title="Please provide current address postcode.">
+    <div
+      *ngIf="formErrors.currAddrPostCode"
+      class="small text-danger formErrors"
+      [innerHTML]="formErrors.currAddrPostCode">
+    </div>
+  </div>   
+
+ <!-- Current Address Country -->
+
+  <div class="form-group">
+    <label for="currAddrCountry"><strong>Country</strong></label>
+    <select
+      id="currAddrCountry"
+      type="select"
+      class="form-control"
+      formControlName="currAddrCountry"
+      [maxlength]="ef.surnameMax"
+      title="Select the country of your address. ">
+      <option 
+            [value]="currAddrCountry" *ngFor="let currAddrCountry of countries">             {{currAddrCountry}}
+        </option>
+      </select>
+    <div
+      *ngIf="formErrors.currAddrCountry"
+      class="small text-danger formErrors"
+      [innerHTML]="formErrors.currAddrCountry">
+    </div>
+  </div>
+
+
+
+
+
+<!-- Other Details -->
+  <div class="form-group">
+    <label for="otherDetails">Please enter other details to support the submission of this application:</label>
+    <textarea
+      id="otherDetails"
+      class="form-control"
+      rows="3"
+      formControlName="otherDetails"
+      [maxlength]="ef.descMax"></textarea>
+    <div
+      *ngIf="formErrors.otherDetails"
+      class="small text-danger formErrors"
+      [innerHTML]="formErrors.otherDetails">
+    </div>
+  </div>  
+
+  <!-- Has National ID 
+  <div class="form-group">
+    <label class="label-inline-group"><strong>Do you have a national identity card?</strong></label>
+    <div class="form-check form-check-inline">
+      <label class="form-check-label">
+        <input
+          id="hasNatID-yes"
+          type="radio"
+          class="form-check-input"
+          [value]="true"
+          formControlName="hasNatID"> Yes
+      </label>
+    </div>
+    <div class="form-check form-check-inline">
+      <label class="form-check-label">
+        <input
+          id="hasNatID-no"
+          type="radio"
+          class="form-check-input"
+          [value]="false"
+          formControlName="hasNatID"> No
+      </label>
+    </div>
+    <div
+      *ngIf="formErrors.hasNatID"
+      class="small text-danger formErrors"
+      [innerHTML]="formErrors.hasNatID">
+    </div>
+  </div> -->
+
+  <!-- Location -->
+
+
+  
+ 
+
+  <!-- Submit -->
+  <div class="form-group">
+    <button
+      type="submit"
+      class="btn btn-primary"
+      [attr.disabled]="eventForm.invalid || submitting ? true : null"
+      [innerText]="submitBtnText"></button>
+      <!-- https://github.com/angular/angular/issues/11271#issuecomment-289806196 -->
+    <app-submitting *ngIf="submitting"></app-submitting>
+    <a
+      *ngIf="!submitting"
+      class="btn btn-link"
+      (click)="resetForm()"
+      tabindex="0">Reset Form</a>
+
+    <!-- API submission error -->
+    <p *ngIf="error" class="mt-3 alert alert-danger">
+      <strong>Error:</strong> There was a problem submitting the event. Please try again.
+    </p>
+  </div>
+</form>
+
+

@@ -1,0 +1,173 @@
+  <!-- Application References -->  
+  
+   <h4 class="large">Application References</h4>
+	<p></p>
+		<div class="form-group">
+		    <label for="Gender"><strong>Created Date</strong></label>
+		  
+		    {{ event.created_date | date :  "dd/MM/yyyy h:mm a" }}
+		</div>
+
+		<div class="form-group">
+		    <label for="Gender"><strong>Internal B2B ID </strong></label>
+		    {{event._id }}
+		</div>
+		<div class="form-group">
+		    <label for="Gender"><strong>Application No</strong></label>
+		    {{event.applicationNo }}
+		</div>
+		<div class="form-group">
+		    <label for="Gender"><strong>Case Reference</strong></label>
+		    {{event.caseRefNo }}
+		</div>
+		<div class="form-group">
+		    <label for="Gender"><strong>Indicative Notice</strong></label>
+		    {{event.indicativeNotice }}
+		</div>						
+
+  <!-- Personal Details -->  
+    <hr>
+	<h4 class="large">Personal Details</h4>
+	<p></p>
+		<div class="form-group">
+		    <label for="Gender"><strong>Gender </strong></label>
+		    {{event.gender }}
+		</div>
+		<div class="form-group">
+		    <label for="Name"><strong>Full Name </strong></label>
+		    {{event.title }} {{event.forename }} {{event.surname }}
+		</div>
+		<div class="form-group">
+		    <label for="Name"><strong>Other Title </strong></label>
+		    {{event.otherTitle }}
+		</div>
+		<div class="form-group">
+		    <label for="Name"><strong>Other Names </strong></label>
+		    {{event.otherForename }} {{event.otherSurname }}
+		</div>
+		<div class="form-group">
+		    <label for="Name"><strong>Mothers Maiden Name </strong></label>
+		    {{event.mothersMaiden }}
+		</div>
+
+  <!-- Birth Details -->  
+    <hr>	
+	<h4 class="large">Birth Details</h4>
+	<p></p>
+		<div class="form-group">
+		    <label for="birthDate"><strong>Date of Birth </strong></label>
+		    {{ event.birthDate | date :  "dd/MM/yyyy" }}
+		</div>
+		<div class="form-group">
+		    <label for="countryOfBirth"><strong>Country of Birth</strong></label>
+		    {{event.countryOfBirth }}
+		 </div>
+		 <div class="form-group">
+		    <label for="townOfBirth"><strong>Town of Birth</strong></label>
+		    {{event.townOfBirth }}
+		 </div>
+		<div class="form-group">
+		    <label for="nationality"><strong>Nationality</strong></label>
+		  {{event.nationality }}
+		 </div>  
+
+  <!-- Indentity Confirmation -->  
+    <hr>
+	<h4 class="large">Indentity Confirmation</h4>
+	<p></p>
+		<div class="form-group">
+		    <label for="NINO"><strong>National Insurance Number</strong></label>
+		{{event.NINO }}
+		 </div> 
+		<div class="form-group">
+		    <label for="passportNo"><strong>Passport Number</strong></label>
+		    {{event.passportNo }}
+		 </div> 
+		 <div class="form-group">
+		    <label for="passportCountry"><strong>Passport Country of Issue</strong></label>
+		    {{event.passportCountry }}
+		 </div> 
+		 <div class="form-group">
+		    <label for="drivingLicence"><strong>Driving Licence Number</strong></label> 
+		    {{event.drivingLicence }}
+		 </div>  
+		 <div class="form-group">
+		    <label for="licenceCountry"><strong>Driving Licence Country of Issue</strong></label> 
+		    {{event.licenceCountry }}
+		 </div> 
+		  <div class="form-group">
+		    <label for="NICNumber"><strong>National ID Card Number</strong></label>
+		         {{event.NICNumber }}
+		 </div> 
+		 <div class="form-group">
+		    <label for="ElectricitySupplierNumber"><strong>Electricity Supplier Number</strong></label>
+		          {{event.ElectricitySupplierNumber }}
+		 </div> 
+		  <div class="form-group">
+		    <label for="NatEntCardNo"><strong>National Entitlement Card Number</strong></label>
+		          {{event.NatEntCardNo }}
+		 </div>   
+		  <div class="form-group">
+		    <label for="PVGSchemeID"><strong>PVG Scheme ID</strong></label>  
+		          {{event.PVGSchemeID }}
+		 </div>  
+
+ <!-- Contact Details -->
+     <hr>
+	 <h4 class="large">Contact Details</h4>
+	<p></p>   
+		 <div class="form-group">
+		    <label for="EmailAddress"><strong>Email Address</strong></label>
+		           {{event.EmailAddress }}
+		 </div>
+		 <div class="form-group">
+		    <label for="EveningPhoneNumber"><strong>Evening Telephone No</strong></label> 
+		           {{event.EveningPhoneNumber }}
+		 </div>
+		<div class="form-group">
+		    <label for="DaytimePhoneNumber"><strong>Daytime Telephone No</strong></label> 
+		           {{event.DaytimePhoneNumber }}
+		 </div>      
+
+ <!--Current Address Details -->
+     <hr>
+	 <h4 class="large">Address Details</h4>
+	<p></p>   
+ 		<div class="form-group">
+        	<label for="currResidentFrom"><strong>Resident From</strong></label>
+		        
+		           {{ event.currResidentFrom | date :  "dd/MM/yyyy" }}
+		 </div> 
+ 		<div class="form-group">
+        	<label for="currAddrLine1"><strong>Address Line 1</strong></label>
+		           {{event.currAddrLine1 }}
+		 </div> 
+ 		<div class="form-group">
+        	<label for="currAddrLine2"><strong>Address Line 2</strong></label>
+		           {{event.currAddrLine2 }}
+		 </div> 
+ 		<div class="form-group">
+        	<label for="currAddrTown"><strong>Town</strong></label>
+		           {{event.currAddrTown }}
+		 </div> 	
+		 <div class="form-group">
+        	<label for="currAddrCounty"><strong>County</strong></label>
+		           {{event.currAddrCounty }}
+		 </div> 	
+		 <div class="form-group">
+        	<label for="currAddrPostCode"><strong>Postcode</strong></label>
+		           {{event.currAddrPostCode }}
+		 </div> 	
+		 <div class="form-group">
+        	<label for="currAddrCountry"><strong>Country</strong></label>
+		           {{event.currAddrCountry }}
+		 </div> 
+
+ <!--Supporting Details -->
+	 <hr>
+	 <h4 class="large">Supporting Details</h4>
+	<p></p>   
+ 		<div class="form-group">
+        	<label for="otherDetails"><strong> Other Details</strong></label>
+		           {{event.otherDetails }}
+		 </div>		 		 	 
